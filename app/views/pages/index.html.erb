@@ -1,7 +1,8 @@
 <div class="container">
   <h1>Pages#index</h1>
   <p>Find me in app/views/pages/index.html.erb</p>
-  <canvas>
-    <%= @page %>
-  </canvas>
+  <%= line_chart Page.group_by_day(:trade_date).count %>
+  <%# @page.each do |data| %>
+    <p> Data </p> <%#= data.date %> <p> Price </p> <%#= data.price %>
+  <%# end %>
 </div>

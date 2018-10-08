@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def index
-    @page = Page.new
+    @page = Page.set_chart_data
   end
 end

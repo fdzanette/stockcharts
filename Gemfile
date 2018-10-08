@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem "chartkick"
 gem 'simple_xlsx_reader'
+gem 'groupdate'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
