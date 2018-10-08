@@ -9,9 +9,10 @@ class Page < ApplicationRecord
     chart_data = []
     worksheets.each do |worksheet|
       num_rows = 0
+
       worksheet.rows.each do |row|
         row_cells = row
-         chart_data << Page.new(trade_date:row[0], price:row[1])
+         chart_data << Page.new(trade_date:row[0], price:row[1], name:worksheet.name)
         num_rows += 1
       end
     end

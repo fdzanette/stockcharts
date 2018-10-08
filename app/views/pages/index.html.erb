@@ -1,8 +1,4 @@
 <div class="container">
-  <h1>Pages#index</h1>
-  <p>Find me in app/views/pages/index.html.erb</p>
+  <h1><%=@page.first.name %></h1>
   <%= area_chart Page.group_by_day(:trade_date).maximum(:price) %>
-  <%# @page.each do |data| %>
-    <p> Data: <%#= data.trade_date %> Price: <%#= number_to_currency(data.price) %> </p>
-  <%# end %>
 </div>
