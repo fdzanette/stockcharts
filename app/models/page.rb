@@ -11,9 +11,11 @@ class Page < ApplicationRecord
       num_rows = 0
       worksheet.rows.each do |row|
         row_cells = row
-         chart_data << Page.create(trade_date:row[0], price:row[1])
+         chart_data << Page.new(trade_date:row[0], price:row[1])
         num_rows += 1
       end
     end
+  chart_data
   end
+
 end
