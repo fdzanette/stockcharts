@@ -1,0 +1,20 @@
+class TradeDate < ApplicationRecord
+  belongs_to :stock
+
+  def self.set_stock_price_history
+    workbook = SimpleXlsxReader.open '/home/fabricio/Documents/Parsing_cotações.xlsx'
+
+    worksheets = workbook.sheets
+    chart_data = []
+    worksheets.each do |worksheet|
+      num_rows = 0
+
+      worksheet.rows.drop(1).each do |row|
+        row_cells = row
+         chart_data << TradeDate.new(day:row[0], open:row[1], high:row[1], low:row[1], close:row[1])
+        num_rows += 1
+      end
+    end
+  chart_data
+  end
+end

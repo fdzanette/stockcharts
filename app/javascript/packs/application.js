@@ -1,11 +1,6 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+//= require xlsx
+
 const echarts = require('echarts');
 // initialize echarts instance with prepared DOM
 const myChart = echarts.init(document.getElementById('main'));
@@ -30,10 +25,11 @@ const file = '/home/fabricio/Documents/Parsing_cotações.xlsx'
 const openFile = XLSX.read(file, {
       type: 'binary'
       });
-const XL_row_object = XLSX.utils.sheet_to_row_object_array(openFile.Sheets['Sheet1']);
-const json_object = JSON.stringify(XL_row_object);
+console.log(openFile);
+const XL_row_object = XLSX.utils.sheet_to_json(openFile.Sheets['Sheet1']);
+//const json_object = JSON.stringify(XL_row_object);
 console.log(XL_row_object);
-console.log(json_object);
+//console.log(json_object);
 
 const ExcelToJSON = function() {
 

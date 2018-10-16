@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem "chartkick"
 gem 'simple_xlsx_reader'
 gem 'groupdate'
+gem 'js-xlsx-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

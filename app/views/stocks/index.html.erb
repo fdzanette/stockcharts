@@ -1,0 +1,28 @@
+<div class="container">
+  <h1><%=@stock.name %></h1>
+  <table class="table">
+    <thead>
+      <tr>
+      <td> Date </td>
+      <td> Open </td>
+      <td> High </td>
+      <td> Low </td>
+      <td> Close </td>
+      </tr>
+    </thead>
+    <tbody>
+    <% @stock.trade_dates.each do |date| %>
+      <tr>
+      <td> <%= date.day %> </td>
+      <td> <%= number_to_currency(date.open) %> </td>
+      <td> <%= number_to_currency(date.high) %> </td>
+      <td> <%= number_to_currency(date.low) %> </td>
+      <td> <%= number_to_currency(date.close) %> </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%#= area_chart Page.group_by_day(:trade_date).maximum(:price) %>
+ <!-- <div id="main"></div>  <!-- specific div for the chart -->
+<%console%>
+</div>
