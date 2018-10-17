@@ -18,14 +18,4 @@ class TradeDate < ApplicationRecord
   chart_data
   end
 
-  # def self.set_stock_name
-  #   workbook = SimpleXlsxReader.open '/home/fabricio/Documents/Parsing_cotações.xlsx'
-  #   worksheets = workbook.sheets
-  #   stock_name = ""
-  #   worksheets.each do |worksheet|
-  #     stock_name = worksheet.name
-  #   end
-  #   stock_name
-  # end
-
 end
