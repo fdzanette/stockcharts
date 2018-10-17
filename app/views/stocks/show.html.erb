@@ -1,6 +1,6 @@
 <div class="container">
   <h1> Show Page of Stock <%= @stock.name %> </h1>
-
+  <div id="main"></div> <!-- specific div for the chart -->
 
     <table class="table">
       <thead>
@@ -24,7 +24,7 @@
       <% end %>
       </tbody>
     </table>
+
 </div>
   <%#= area_chart Page.group_by_day(:trade_date).maximum(:price) %>
- <!-- <div id="main"></div> specific div for the chart -->
 
