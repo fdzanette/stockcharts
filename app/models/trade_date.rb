@@ -18,4 +18,13 @@ class TradeDate < ApplicationRecord
   chart_data
   end
 
+  def set_ema
+    @trades = TradeDate.all
+    @average_array = []
+    @trades.each do |trade|
+      average_array << trade.close
+    end
+    @average_array.ema(4,4)
+  end
+
 end
