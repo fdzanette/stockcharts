@@ -10,8 +10,9 @@
         <td> High </td>
         <td> Low </td>
         <td> Close </td>
-        <td> EMA </td>
-
+        <td> EMA1 </td>
+        <td> EMA2 </td>
+        <td> EMA3 </td>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +23,9 @@
         <td> <%= number_to_currency(date.high) %> </td>
         <td> <%= number_to_currency(date.low) %> </td>
         <td> <%= number_to_currency(date.close) %> </td>
-        <td> <%= number_to_currency(ema(date.close)) %> </td>
+        <td> <%= number_to_currency(@moving_average1) %> </td>
+        <td> <%= number_to_currency(@moving_average2) %> </td>
+        <td> <%= number_to_currency(@moving_average3) %> </td>
         </tr>
       <% end %>
       </tbody>
