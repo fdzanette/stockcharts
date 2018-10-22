@@ -12,11 +12,9 @@
         <td> High </td>
         <td> Low </td>
         <td> Close </td>
-        <td> MM5 </td>
-        <td> MM13 </td>
-        <td> MM21 </td>
-        <td> EMA1 </td>
-        <td> EMA2 </td>
+        <td> MMA5 </td>
+        <td> MMA13 </td>
+        <td> MMA21 </td>
         </tr>
       </thead>
       <tbody>
@@ -30,9 +28,6 @@
           <td> <%= number_to_currency(date.high) %> </td>
           <td> <%= number_to_currency(date.low) %> </td>
           <td class="stock_close"> <%= number_to_currency(date.close) %> </td>
-          <td> <%= number_to_currency(@moving_average1) %> </td>
-          <td> <%= number_to_currency(@moving_average2) %> </td>
-          <td> <%= number_to_currency(@moving_average3) %> </td>
           <td class="expo_average">
             <% if row < 5 %>
               <p> --- </p>
@@ -44,6 +39,13 @@
               <p> --- </p>
             <% else %>
               <%= number_to_currency(expo_average.ema(row - 1, 13)) %> </td>
+            <% end %>
+          </td>
+          <td>
+            <% if row < 21 %>
+              <p> --- </p>
+            <% else %>
+              <%= number_to_currency(expo_average.ema(row - 1, 21)) %> </td>
             <% end %>
           </td>
           </tr>
