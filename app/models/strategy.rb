@@ -25,7 +25,7 @@ class Strategy < ApplicationRecord
     end
   end
 
-  def set_strategy2(stock, amount) #cruzamento de mme de 5 periodos com o preço de fechamento
+  def set_strategy2(stock, amount) #cruzamento de mme de 5 periodos com a media de 13
     expo_average = []
     row = count = paid = sold = profit = 0
     buy = false
@@ -50,7 +50,7 @@ class Strategy < ApplicationRecord
     end
   end
 
-  def set_strategy2(stock, amount) #cruzamento de mme de 5 periodos com o preço de fechamento
+  def set_strategy3(stock, amount) #cruzamento de mme de 5 periodos com a media de 21
     expo_average = []
     row = count = paid = sold = profit = 0
     buy = false
@@ -65,7 +65,7 @@ class Strategy < ApplicationRecord
             puts "Comprou -- Preço: #{paid} -- Data: #{date.day}"
             puts "----------"
           end
-        elsif expo_average.ema(row - 1, 5) < expo_average.ema(row - 1, 21)
+        elsif expo_average.ema(row - 1, 5) < expo_average.ema(row - 1, 8)
           if buy == true
             buy = false
             sold = date.close
