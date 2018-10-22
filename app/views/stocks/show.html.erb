@@ -15,7 +15,8 @@
         <td> MM5 </td>
         <td> MM13 </td>
         <td> MM21 </td>
-        <td> EMA4 </td>
+        <td> EMA1 </td>
+        <td> EMA2 </td>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +39,13 @@
             <% else %>
               <%= number_to_currency(expo_average.ema(row - 1, 5)) %> </td>
             <% end %>
+          <td>
+            <% if row < 13 %>
+              <p> --- </p>
+            <% else %>
+              <%= number_to_currency(expo_average.ema(row - 1, 13)) %> </td>
+            <% end %>
+          </td>
           </tr>
           <% expo_average << date.close %>
         <% end %>
