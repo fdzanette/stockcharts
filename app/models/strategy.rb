@@ -4,8 +4,8 @@ class Strategy < ApplicationRecord
     expo_average = []
     row = count = paid = sold = profit = 0
     buy = false
-    stock.trade_dates.reverse.each do |date|
-      if row > 5
+    stock.trade_dates.each do |date|
+      if row >= 5
         if date.close > expo_average.ema(row - 1, 5)
           if buy == false
             count += 1
@@ -29,8 +29,8 @@ class Strategy < ApplicationRecord
     expo_average = []
     row = count = paid = sold = profit = 0
     buy = false
-    stock.trade_dates.reverse.each do |date|
-      if row > 13
+    stock.trade_dates.each do |date|
+      if row >= 13
         if expo_average.ema(row - 1, 5) > expo_average.ema(row - 1, 13)
           if buy == false
             count += 1
@@ -50,21 +50,21 @@ class Strategy < ApplicationRecord
     end
   end
 
-  def set_strategy3(stock, amount) #cruzamento de mme de 5 periodos com a media de 21
+  def set_strategy3(stock, amount) #cruzamento de mme de 5 periodos com 21 na compra. venda no cruzamento de 5 e 8.
     expo_average = []
     row = count = paid = sold = profit = 0
     buy = false
-    stock.trade_dates.reverse.each do |date|
-      if row > 21
-        if expo_average.ema(row - 1, 5) > expo_average.ema(row - 1, 21)
-          if buy == false
+    stock.trade_dates.each do |date|
+      if row >= 21
+        if expo_average.ema(row - 1, 5) > expo_average.ema(row - 1, 21) && buy == false
+          #if buy == false
             count += 1
             buy = true
             paid = date.close
             puts "Media: #{expo_average.ema(row - 1, 5).round(2)}"
             puts "Comprou -- Preço: #{paid} -- Data: #{date.day}"
             puts "----------"
-          end
+          #end
         elsif expo_average.ema(row - 1, 5) < expo_average.ema(row - 1, 8)
           if buy == true
             buy = false

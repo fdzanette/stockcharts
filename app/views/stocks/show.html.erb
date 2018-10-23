@@ -13,6 +13,7 @@
         <td> Low </td>
         <td> Close </td>
         <td> MMA5 </td>
+        <td> MMA8 </td>
         <td> MMA13 </td>
         <td> MMA21 </td>
         </tr>
@@ -34,6 +35,13 @@
             <% else %>
               <%= number_to_currency(expo_average.ema(row - 1, 5)) %> </td>
             <% end %>
+            <td>
+            <% if row < 8 %>
+              <p> --- </p>
+            <% else %>
+              <%= number_to_currency(expo_average.ema(row - 1, 8)) %> </td>
+            <% end %>
+          </td>
           <td>
             <% if row < 13 %>
               <p> --- </p>
