@@ -80,32 +80,43 @@ class Strategy < ApplicationRecord
     stock.trade_dates.each do |date|
       if row >= 21
         if expo_average.ema(row - 1, 5) > expo_average.ema(row - 1, 21) && buy == false
-          #if buy == false
             count += 1
             buy = true
             paid = date.close
-            puts "Media: #{expo_average.ema(row - 1, 5).round(2)}"
-            puts "Comprou -- Preço: #{paid} -- Data: #{date.day}"
-            puts "----------"
-          #end
         elsif date.close < expo_average.ema(row -1, 5)
           if buy == true
             buy = false
             sold = date.close
             profit += (sold - paid) * amount
-            puts "Media: #{expo_average.ema(row - 1, 5).round(2)}"
-            puts "Vendeu -- Preço: #{sold} -- Data: #{date.day}"
-            puts "Lucro na operação: #{sold - paid}"
-            puts "Lucro acumulado: #{profit}"
-            puts "------------------------------"
           end
         end
       end
     expo_average << date.close
     row += 1
     end
+  end
+
+  def set_strategy5(stock, amount) #compra a qualquer preço. venda a 6% de lucro ou stop a 2,5%
+    expo_average = []
+    count = paid = sold = profit = 0
+    buy = false
+    stock.trade_dates.each do |date|
+        if buy == false
+            count += 1
+            buy = true
+            paid = date.close
+            puts "Comprou -- Preço: #{paid} -- Data: #{date.day}"
+            puts "----------"
+        elsif buy == true && (date.close >= 1.065 * paid || date.close <= paid * 0.98)
+            buy = false
+            sold = date.close
+            profit += (sold - paid) * amount
+        end
+    expo_average << date.close
+    end
     puts "Total de operações: #{count}"
     puts "---END---"
   end
+
 
 end
