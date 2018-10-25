@@ -1,0 +1,20 @@
+<div class="container">
+  <div>
+    <h1> Resultados para <%= @stock.name %> </h1>
+  </div>
+  <div>
+    <h3> Estratégia 1: R$ <%= @strategy.set_strategy1(@stock, 1000).to_f %> </h3>
+  </div>
+  <div>
+    <h3> Estratégia 2: R$ <%= @strategy.set_strategy2(@stock, 1000).to_f %> </h3>
+     </div>
+  <div>
+    <h3> Estratégia 3: R$ <%= @strategy.set_strategy3(@stock, 1000).to_f %> </h3>
+  </div>
+  <div>
+    <h3> Estratégia 4: R$ <%= @strategy.set_strategy4(@stock, 1000).to_f %> </h3>
+  </div>
+  <div>
+    <h3> Estratégia 5: R$ <%= @strategy.set_strategy5(@stock, 1000).to_f %> </h3>
+  </div>
+</div>

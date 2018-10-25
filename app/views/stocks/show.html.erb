@@ -2,7 +2,7 @@
   <div class="top-div">
     <%= link_to "Home", root_path %>
     <h2> Show Page of Stock <%= @stock.name %> </h2>
-    <button class="btn btn-info" id="set" > Set Strategy </button>
+    <%= link_to "Get Strategy", strategies_path %>
   </div>
     <table class="table">
       <thead>

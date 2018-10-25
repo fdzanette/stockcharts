@@ -2,7 +2,7 @@ class Strategy < ApplicationRecord
 
   def set_strategy1(stock, amount) #cruzamento de mme de 5 periodos com o preço de fechamento
     expo_average = []
-    row = count = paid = sold = profit = 0
+    row = count = paid = sold = @profit = 0
     buy = false
     stock.trade_dates.each do |date|
       if row >= 5
@@ -16,18 +16,19 @@ class Strategy < ApplicationRecord
           if buy == true
             buy = false
             sold = date.close
-            profit += (sold - paid) * amount
+            @profit += (sold - paid) * amount
           end
         end
       end
     expo_average << date.close
     row += 1
     end
+    @profit
   end
 
   def set_strategy2(stock, amount) #cruzamento de mme de 5 periodos com a media de 13
     expo_average = []
-    row = count = paid = sold = profit = 0
+    row = count = paid = sold = @profit = 0
     buy = false
     stock.trade_dates.each do |date|
       if row >= 13
@@ -41,18 +42,19 @@ class Strategy < ApplicationRecord
           if buy == true
             buy = false
             sold = date.close
-            profit += (sold - paid) * amount
+            @profit += (sold - paid) * amount
           end
         end
       end
     expo_average << date.close
     row += 1
     end
+    @profit
   end
 
   def set_strategy3(stock, amount) #cruzamento de mme de 5 periodos com 21 na compra. venda no cruzamento de 5 e 8.
     expo_average = []
-    row = count = paid = sold = profit = 0
+    row = count = paid = sold = @profit = 0
     buy = false
     stock.trade_dates.each do |date|
       if row >= 21
@@ -64,18 +66,19 @@ class Strategy < ApplicationRecord
           if buy == true
             buy = false
             sold = date.close
-            profit += (sold - paid) * amount
+            @profit += (sold - paid) * amount
           end
         end
       end
     expo_average << date.close
     row += 1
     end
+    @profit
   end
 
   def set_strategy4(stock, amount) #cruzamento de mme de 5 periodos com 21 na compra. venda no cruzamento do close com mme 5.
     expo_average = []
-    row = count = paid = sold = profit = 0
+    row = count = paid = sold = @profit = 0
     buy = false
     stock.trade_dates.each do |date|
       if row >= 21
@@ -87,18 +90,19 @@ class Strategy < ApplicationRecord
           if buy == true
             buy = false
             sold = date.close
-            profit += (sold - paid) * amount
+            @profit += (sold - paid) * amount
           end
         end
       end
     expo_average << date.close
     row += 1
     end
+    @profit
   end
 
   def set_strategy5(stock, amount) #compra a qualquer preço. venda a 6% de lucro ou stop a 2,5%
     expo_average = []
-    count = paid = sold = profit = 0
+    count = paid = sold = @profit = 0
     buy = false
     stock.trade_dates.each do |date|
         if buy == false
@@ -110,13 +114,15 @@ class Strategy < ApplicationRecord
         elsif buy == true && (date.close >= 1.065 * paid || date.close <= paid * 0.98)
             buy = false
             sold = date.close
-            profit += (sold - paid) * amount
+            @profit += (sold - paid) * amount
+            puts "Vendeu -- Preço: #{sold} -- Data: #{date.day}"
+            puts "----------"
         end
     expo_average << date.close
     end
     puts "Total de operações: #{count}"
+    puts "Resultado: R$ #{@profit}"
     puts "---END---"
+    @profit
   end
-
-
 end
