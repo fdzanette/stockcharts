@@ -10,7 +10,6 @@ class StocksController < ApplicationController
 
   def get_strategy_numbers
     @strategy = Strategy.new
-
   end
 
   def new

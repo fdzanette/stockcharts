@@ -20,9 +20,10 @@
       </thead>
       <tbody>
       <% expo_average = [] %>
-      <% row = 0 %>
+      <% row = expo_average.size %>
       <% @stock.trade_dates.each do |date| %>
         <% if row < @stock.trade_dates.count %>
+          <% expo_average << date.close %>
           <tr>
           <td> <%= date.day %> </td>
           <td> <%= number_to_currency(date.open) %> </td>
@@ -30,34 +31,33 @@
           <td> <%= number_to_currency(date.low) %> </td>
           <td class="stock_close"> <%= number_to_currency(date.close) %> </td>
           <td class="expo_average">
-            <% if row < 5 %>
+            <% if row < 4 %>
               <p> --- </p>
             <% else %>
-              <%= number_to_currency(expo_average.ema(row - 1, 5)) %> </td>
+              <%= number_to_currency(expo_average.ema(expo_average.size - 1, 5)) %> </td>
             <% end %>
             <td>
-            <% if row < 8 %>
+            <% if row < 7 %>
               <p> --- </p>
             <% else %>
-              <%= number_to_currency(expo_average.ema(row - 1, 8)) %> </td>
+              <%= number_to_currency(expo_average.ema(expo_average.size - 1, 8)) %> </td>
             <% end %>
           </td>
           <td>
-            <% if row < 13 %>
+            <% if row < 12 %>
               <p> --- </p>
             <% else %>
-              <%= number_to_currency(expo_average.ema(row - 1, 13)) %> </td>
+              <%= number_to_currency(expo_average.ema(expo_average.size - 1, 13)) %> </td>
             <% end %>
           </td>
           <td>
-            <% if row < 21 %>
+            <% if row < 20 %>
               <p> --- </p>
             <% else %>
-              <%= number_to_currency(expo_average.ema(row - 1, 21)) %> </td>
+              <%= number_to_currency(expo_average.ema(expo_average.size - 1, 21)) %> </td>
             <% end %>
           </td>
           </tr>
-          <% expo_average << date.close %>
         <% end %>
         <% row += 1 %>
       <% end %>
